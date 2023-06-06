@@ -1,6 +1,13 @@
-ActiveRecord::Schema[7.0].define(version: 2023_06_06_122914) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_06_123851) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "author_id", null: false
+    t.bigint "post_id", null: false
+    t.index ["author_id"], name: "index_likes_on_author_id"
+    t.index ["post_id"], name: "index_likes_on_post_id"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.bigint "author_id", null: false
@@ -18,8 +25,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_122914) do
     t.integer "post_counter", default: 0
   end
 
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "users", column: "author_id"
   add_foreign_key "posts", "users", column: "author_id"
 end
+
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
