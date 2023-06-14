@@ -1,1 +1,36 @@
-<h1>Here is a list of posts</h1>
+<div class="detailed-post">
+
+        <div class="detail-container">
+                <img src=<%=@user.photo %>>
+                <div class="detail-user">
+                    <h1><%= @user.name %></h1>
+                    <h3>Number of posts: <%= @posts.count %>
+                    </h3>
+                </div>
+        </div>
+
+    <div class="recent-posts">
+        <% @posts.each do |post| %>
+        <div class="one-comment">
+                <h2><%= post.title %>
+                </h2>
+                <p id="post-text">
+                    <%= post.text.split[0..80].join(" ") %>
+                </p>
+                <div class="comment-like">
+                    <span>Comments: <%= post.comment_counter%> </span>
+                    <span class="likes">Likes:<%= post.likes_counter%></span>
+                </div>
+
+                <div class="comments-container">
+                    <% post.recent_five_comments.each do |comment| %>
+                        <div  id="single-comment"> 
+                            <span><%= comment.text %></span>
+                        </div>
+                    <% end %>
+              </div>
+
+            </div>
+          <% end %>
+       </div>
+   </div>
