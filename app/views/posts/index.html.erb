@@ -1,8 +1,8 @@
 <div class="detailed-post">
 
-        <div class="detail-container">
-                <img src=<%=@user.photo %>>
-                <div class="detail-user">
+        <div class="detail-container" style="display: flex;">
+                <img src="<%=@user.photo %>" style="width: 200px; height: 200px; margin-top: 10px;">
+                <div class="detail-user" style="margin-left: 50px;">
                     <h1><%= @user.name %></h1>
                     <h3>Number of posts: <%= @posts.count %>
                     </h3>
