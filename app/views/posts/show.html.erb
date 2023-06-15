@@ -1,1 +1,23 @@
-<h1>Here is a list of posts for users</h1>
+<div class="comment-container">
+    <div class='comment-header' style="display: flex; align-items: center; font-weight: 600">
+        <div id="post-title" style="font-size: 2rem;">
+           "<%= @post.title%>" - <%= @post.author.name%>
+        </div>
+        <div class="comment-like" style="margin-left: 10rem;">
+            <span>Comments: <%= @post.comment_counter%>, </span>
+            <span class="likes">Likes:<%= @post.likes_counter%></span>
+        </div>
+    </div>
+    <h3>
+        <%= @post.text%>
+    </h2>
+
+            <div class="comments-container-post">
+                <% @comments=Post.find(@post.id).comments %>
+                    <% @comments.each do |comment| %>
+                        <div  id="single-comment">
+                            <span> <%= comment.author.name %> : <%= comment.text %></span>
+                        </div>
+                    <% end %>
+    </div>
+</div>
