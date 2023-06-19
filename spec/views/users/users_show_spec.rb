@@ -36,13 +36,15 @@ RSpec.describe 'index_show', type: :feature, js: false do
       expect(page).to have_text(post3.text)
       expect(page).to have_text(post4.text)
     end
-
+    
     it "redirects me to the post's show page when i click a user's post" do
       user = User.find_by(name: 'Amaka')
       post = Post.find_by(title: 'kinetic')
       click_on 'kinetic'
       expect(page).to have_current_path(user_post_path(user.id, post.id))
     end
-  
+    it 'should have a button to see all posts' do
+      
+    end
   end
 end
