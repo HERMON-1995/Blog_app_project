@@ -12,6 +12,7 @@
     <div class="recent-posts">
         <% @posts.each do |post| %>
         <div class="one-comment">
+        <%= link_to user_post_path(@user, post.id) do%>
                 <h2><%= post.title %>
                 </h2>
                 <p id="post-text">
@@ -25,11 +26,11 @@
                 <div class="comments-container">
                     <% post.recent_five_comments.each do |comment| %>
                         <div  id="single-comment"> 
-                            <span><%= comment.text %></span>
+                        <span> <%= comment.author.name %> : <%= comment.text %></span>
                         </div>
                     <% end %>
               </div>
-
+              <%end%>
             </div>
           <% end %>
        </div>
