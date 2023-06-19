@@ -1,29 +1,30 @@
 <div class="comment-container">
-    <div class='comment-header' style="display: flex; align-items: center; font-weight: 600">
-        <div id="post-title" style="font-size: 2rem;">
-           "<%= @post.title%>" - <%= @post.author.name%>
-        </div>
-        <div class="comment-like" style="margin-left: 10rem;">
-            <span>Comments: <%= @post.comment_counter%>, </span>
-            <span class="likes">Likes:<%= @post.likes_counter%></span>
-        </div>
-    </div>
-    <h3>
-        <%= @post.text%>
-    </h2>
-            <div class="comment-like-button">
-                <%= form_with url: "/users/#{@post.author.id}/posts/#{@post.id}/likes" do |form| %>
-                <%= form.submit 'Like', class: 'single-button' %>
-                <% end %>
-                <div><%= link_to "Add Comment", new_user_post_comment_path(@post.author.id, @post.id) %></div>
-            </div>
+<div class='comment-header'>
 
-            <div class="comments-container-post">
-                <% @comments=Post.find(@post.id).comments %>
-                  <% @comments.includes(:author).each do |comment| %>
-                        <div  id="single-comment">
-                            <span> <%= comment.author.name %> : <%= comment.text %></span>
-                        </div>
-                    <% end %>
+    <h1 id="post-title">
+       "<%= @post.title%>" - <%= @post.author.name%>
+    </h1>
+    <div class="comment-like">
+        <span>Comments: <%= @post.comment_counter%>, </span>
+        <span class="likes">Likes:<%= @post.likes_counter%></span>
     </div>
+</div>
+<p>
+    <%= @post.text%>
+</p>
+<div class="comment-like-button">
+    <%= form_with url: "/users/#{@post.author.id}/posts/#{@post.id}/likes" do |form| %>
+ <%= form.submit 'Like', class: 'single-button' %>
+<% end %>
+<div><%= link_to "Add Comment", new_user_post_comment_path(@post.author.id, @post.id) %></div>
+</div>
+
+        <div class="comments-container-post">
+            <% @comments=Post.find(@post.id).comments %>
+                <% @comments.includes(:author).each do |comment| %>
+                    <div  id="single-comment">
+                        <span> <%= comment.author.name %> : <%= comment.text %></span>
+                    </div>
+                <% end %>
+</div>
 </div>
