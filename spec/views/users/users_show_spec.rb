@@ -36,5 +36,10 @@ RSpec.describe 'index_show', type: :feature, js: false do
       expect(page).to have_text(post3.text)
       expect(page).to have_text(post4.text)
     end
+
+    it "redirects me to the post's show page when i click a user's post" do
+      
+    end
+  
   end
 end
