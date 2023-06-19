@@ -38,7 +38,10 @@ RSpec.describe 'index_show', type: :feature, js: false do
     end
 
     it "redirects me to the post's show page when i click a user's post" do
-      
+      user = User.find_by(name: 'Amaka')
+      post = Post.find_by(title: 'kinetic')
+      click_on 'kinetic'
+      expect(page).to have_current_path(user_post_path(user.id, post.id))
     end
   
   end
