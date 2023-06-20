@@ -1,8 +1,8 @@
 <a href="/users/<%= user.id %>">
   <div class="users-list" style="display: flex;">
     <img src="<%= user.photo %>" alt="User" style="width: 200px; height: 200px; margin-top: 10px;" />
-    <div class="description" style="margin-left: 50px;">
-      <h2><%= user.name %></h2>
+    <div class="description" style="margin-left: 20px;">
+      <h2><%=user.name %></h2>
       <h4>Number of posts: <%= user.posts.count %></h4>
     </div>
   </div>

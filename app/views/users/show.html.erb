@@ -1,7 +1,7 @@
 <div class="user-detail">
-    <div class="detail-description" style="display: flex;">
-    <div><img src="<%= @user.photo %>" alt="User" style="width: 200px; height: 200px; margin-top: 10px;"/></div>
-    <div class="user-desc" style="margin-left: 50px;">
+        <div class="detail-description" style="display: flex;">
+        <div><img src="<%= @user.photo %>" alt="User" style="width: 200px; height: 200px; margin-top: 10px;"/></div>
+        <div class="user-desc" style="margin-left: 50px;">
         <h1> <%= @user.name %></h1>
         <h3>Number of posts: <%= @user.posts.count %></h3>
     </div>
@@ -10,19 +10,20 @@
         <h2>Bio</h2>
         <p><%= @user.bio %></p>
     </div>
+    <% @user.three_recent_posts.each do |post| %>
     <div class="recent-posts">
-        <% @user.three_recent_posts.each do |post| %>
         <div class="single-post">
-            <h2><%= post.title %></h2>
-            <a href="<%= @user.id%>/posts/<%= post.id%>">
+        
+            <h2><a href="/users/<%= @user.id %>/posts/<%= post.id %>" class=""><%= post.title %></a></h2>
             <p><%= post.text %></p>
              <div class="comment-like">
                     <span class="comments">Comments: <%= post.comment_counter%>, </span>
                     <span class="likes">Likes:<%= post.likes_counter%></span>
                 </div>
-            </a>
+        
         </div>
-        <%end%> 
-         <a href="<%=@user.id%>/posts/" class="button" style="margin-left: 30rem;">See all posts</a>
+         <a href="<%=@user.id%>/posts/" class="button">See all posts</a>
     </div>
+    <%end%> 
+
 </div>

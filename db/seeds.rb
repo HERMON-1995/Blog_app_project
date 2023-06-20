@@ -6,10 +6,9 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-first_user = User.create(name: 'Tom', photo: 'https://otkritkis.com/wp-content/uploads/2021/12/original-5-4.jpg', bio: 'Teacher from Mexico.')
-second_user = User.create(name: 'Lilly', photo: 'https://cdn140.picsart.com/268677411009201.png', bio: 'Teacher from Poland.')
-third_user = User.create(name: 'Ana', photo: 'https://yt3.ggpht.com/ytc/AKedOLTQyz4Tycr1goerUWaMMCU3NNlvEAUlx4EzKF9Qww=s900-c-k-c0x00ffffff-no-rj', bio: 'Teacher from Poland.')
-fourth_user = User.create(name: 'Jaden', photo: 'https://www.gkristianhansenorthodontics.com/wp-content/uploads/2018/07/Healthy_Bite_Bozeman_MT_Orthodontist.jpg', bio: 'Teacher from Poland.')
+
+first_user = User.create(name: 'Amaka', photo: 'https://avatars.githubusercontent.com/u/105006208?v=4', bio: 'Teacher from Mexico.')
+second_user = User.create(name: 'Jaden', photo: 'https://avatars.githubusercontent.com/u/105528809?v=4', bio: 'Teacher from Poland.')
 
 first_post = Post.create(author_id: first_user.id, title: 'Hello', text: 'This is my first post')
 third_post = Post.create(author_id: first_user.id, title: 'cream de la cream', text: 'It is a pleasure')

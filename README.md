@@ -129,6 +129,11 @@ To run tests, run the following command:
 - GitHub: [@githubhandle](https://github.com/HERMON-1995)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/hermon-gebre/)
 
+### 👤 **Ilyass Atlassi**:
+- GitHub: [ilyassatlass](https://github.com/ilyassatlassi)
+- Twitter: [ilyass_atlassi](https://twitter.com/ilyass_atlassi)
+- LinkedIn: [Ilyass Atlassi](https://www.linkedin.com/in/ilyassatlassi/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
