@@ -69,6 +69,7 @@ group :development do
   # gem "spring"
 end
 
+gem 'cancancan'
 gem 'devise'
 
 group :test do
