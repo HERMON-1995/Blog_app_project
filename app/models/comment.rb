@@ -11,5 +11,5 @@ class Comment < ApplicationRecord
 
   def reduce_comment_counter
     post.decrement!(:comment_counter)
-  end
+  end
 end
