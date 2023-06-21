@@ -27,6 +27,10 @@
                     <% post.recent_five_comments.each do |comment| %>
                         <div  id="single-comment"> 
                            <span> <%= comment.author.name %> : <%= comment.text %></span>
+                           <% if can? :destroy, comment %>
+                             <div><%= button_to "Delete", post_comment_path(post, comment), method: :delete, data: { confirm: "Are you sure?" }, class: "sign_out" %></div>
+                           <% end %>
+
                         </div>
                     <% end %>
             </div>
