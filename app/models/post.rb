@@ -14,4 +14,9 @@ class Post < ApplicationRecord
   def recent_five_comments
     comments.last(5)
   end
+
+  def reduce_posts_counter
+    author.decrement!(:post_counter)
+  end
+
 end
