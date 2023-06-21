@@ -13,6 +13,10 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def destroy
+    puts params[:id]
+  end
+
   def create
     @user = current_user
     @post = Post.new(author_id: @user, title: params[:post][:title], text: params[:post][:text])
