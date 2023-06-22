@@ -13,9 +13,11 @@
             <p>
                 <%= @post.text%>
             </p>
-            <% if can?(:destroy, Post) %>
-                <%= button_to "Delete Post", user_post_path(@post.author, @post), method: :delete, data: { confirm: "Are you sure?" }, class: "sign_out" %>
-            <% end %>
+            <% if can? :destroy, @post%>
+                <%= form_with url: "/users/#{@post.author.id}/posts/#{@post.id}" , method: :delete do |f|%>
+                    <%= f.submit 'Delete Post' %>
+                <%end%>
+            <%end%>
         </div>
 
     <div class="comment-like-button">
@@ -30,9 +32,11 @@
                 <% @comments.includes(:author).each do |comment| %>
                     <div  id="single-comment">
                      <span> <%= comment.author.name %> : <%= comment.text %></span>
-                    <% if can?(:destroy, Comment) %>
-                    <%= button_to "Delete Comment", user_post_comment_path(@post.author, @post, comment), method: :delete, data: { confirm: "Are you sure?" }, class: "sign_out" %>
-                    <% end %>
+                     <% if can? :destroy, comment%>
+                     <%= form_with url: "/users/#{@post.author.id}/posts/#{@post.id}/comments/#{comment.id}" , method: :delete do |f|%>
+                       <%= f.submit 'Delete Comment' %>
+                     <%end%>
+                   <%end%>
                     </div>
                 <% end %>
 </div>

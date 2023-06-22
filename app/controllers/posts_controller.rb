@@ -1,3 +1,5 @@
+require 'cancancan'
+
 class PostsController < ApplicationController
   def index
     @posts = Post.includes(:author).where(author_id: params[:user_id])
@@ -16,11 +18,11 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
 
-    if can? :destroy, Post
+    if can? :destroy, @post
       @post.destroy
       redirect_to "/users/#{current_user.id}/posts", notice: 'Post was successfully deleted.'
     else
-      redirect_to user_posts_path(current_user), alert: 'You are not authorized to delete this post.'
+      redirect_to user_post_path(@post.author, @post), alert: 'You are not authorized to delete this post.'
     end
   end
 

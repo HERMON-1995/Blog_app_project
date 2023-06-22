@@ -12,6 +12,10 @@ post = Post.create(author_id: hermon.id, title: 'Hello', text: 'This is my first
 
 comment = Comment.create(author_id: hermon.id, post_id: post.id, text: 'I like the post!' )
 
+hana = User.find_by(name: 'Hana')
+post_two = Post.create(author_id: hana.id, title: 'Hi', text: 'This is my second post')
+
+comment = Comment.create(author_id: hana.id, post_id: post_two.id, text: 'Wow, Great!' )
 
 # first_user = User.create(name: 'Amaka', photo: 'https://avatars.githubusercontent.com/u/105006208?v=4', bio: 'Teacher from Mexico.')
 # second_user = User.create(name: 'Jaden', photo: 'https://avatars.githubusercontent.com/u/105528809?v=4', bio: 'Teacher from Poland.')

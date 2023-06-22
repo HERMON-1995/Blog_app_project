@@ -1,3 +1,5 @@
+require 'cancancan'
+
 class CommentsController < ApplicationController
   def new
     @comment = Comment.new
@@ -19,7 +21,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @post = @comment.post
 
-    if can?(:destroy, Comment)
+    if can? :destroy, @comment
       @comment.destroy
       redirect_to user_post_path(@post.author, @post), notice: 'Comment was successfully deleted.'
     else
