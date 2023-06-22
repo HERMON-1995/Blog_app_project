@@ -8,22 +8,35 @@
         <span>Comments: <%= @post.comment_counter%>, </span>
         <span class="likes">Likes:<%= @post.likes_counter%></span>
     </div>
-</div>
-<p>
-    <%= @post.text%>
-</p>
-<div class="comment-like-button">
-    <%= form_with url: "/users/#{@post.author.id}/posts/#{@post.id}/likes" do |form| %>
- <%= form.submit 'Like', class: 'single-button' %>
-<% end %>
-<div><%= link_to "Add Comment", new_user_post_comment_path(@post.author.id, @post.id) %></div>
-</div>
+        </div>
+        <div id="single-post">
+            <p>
+                <%= @post.text%>
+            </p>
+            <% if can? :destroy, @post%>
+                <%= form_with url: "/users/#{@post.author.id}/posts/#{@post.id}" , method: :delete do |f|%>
+                    <%= f.submit 'Delete Post' %>
+                <%end%>
+            <%end%>
+        </div>
+
+    <div class="comment-like-button">
+            <%= form_with url: "/users/#{@post.author.id}/posts/#{@post.id}/likes" do |form| %>
+        <div><%= button_to form.submit 'Like', class: 'single-button' %></div>
+    <% end %>
+    <div><%= button_to link_to "Add Comment", new_user_post_comment_path(@post.author.id, @post.id) %></div>
+        </div>
 
         <div class="comments-container-post">
             <% @comments=Post.find(@post.id).comments %>
                 <% @comments.includes(:author).each do |comment| %>
                     <div  id="single-comment">
-                        <span> <%= comment.author.name %> : <%= comment.text %></span>
+                     <span> <%= comment.author.name %> : <%= comment.text %></span>
+                     <% if can? :destroy, comment%>
+                     <%= form_with url: "/users/#{@post.author.id}/posts/#{@post.id}/comments/#{comment.id}" , method: :delete do |f|%>
+                       <%= f.submit 'Delete Comment' %>
+                     <%end%>
+                   <%end%>
                     </div>
                 <% end %>
 </div>

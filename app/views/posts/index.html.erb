@@ -14,7 +14,7 @@
         <% @posts.includes({comments: [:author]}, :likes).each do |post| %>
         <div class="one-comment">
         <%= link_to user_post_path(@user, post.id) do%>
-        <a href="/users/<%= @user.id %>/posts/<%= post.id %>" class=""><h1><%= post.title %></h1></a>
+        <a href="/users/<%= @user.id %>/posts/<%= post.id %>" ><h1 class="one-post"><%= post.title %></h1>
                 <p id="post-text">
                     <%= post.text.split[0..80].join(" ") %>
                 </p>
@@ -27,11 +27,13 @@
                     <% post.recent_five_comments.each do |comment| %>
                         <div  id="single-comment"> 
                            <span> <%= comment.author.name %> : <%= comment.text %></span>
+                
                         </div>
                     <% end %>
-            </div>
+              </div>
+              </a>
             <%end%>
-            </div>
+        </div>
         <% end %>
     </div>
     </div>

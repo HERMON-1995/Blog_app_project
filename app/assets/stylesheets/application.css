@@ -207,6 +207,16 @@ hr {
 }
 
 .sign_out:hover {
-  transition: 3s;
+  transition: 2s;
   background-color: red;
+}
+
+.one-post:hover {
+  border: 2px solid white;
+}
+
+#single-comment,
+#single-post {
+  display: flex;
+  align-items: center;
 }
