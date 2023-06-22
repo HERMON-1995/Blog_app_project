@@ -9,28 +9,27 @@ class CommentsController < ApplicationController
     @comment.post = @post
     @comment.author = current_user
     if @comment.save
-      redirect_to "/users/#{current_user.id}/posts", notice: 'comment created'
+      redirect_to "/users/#{current_user.id}/posts", notice: 'Comment created.'
     else
       render 'posts/show'
     end
   end
-end
 
-def destroy
-  @comment = Comment.find(params[:id])
+  def destroy
+    @comment = Comment.find(params[:id])
+    @post = @comment.post
 
-  respond_to do |format|
-    if @comment.destroy
-      format.html do
-        redirect_to user_post_path(current_user, Post.find(params[:post_id])),
-                    notice: 'Comment was successfully deleted.'
-      end
+    if can?(:destroy, Comment)
+      @comment.destroy
+      redirect_to user_post_path(@post.author, @post), notice: 'Comment was successfully deleted.'
+    else
+      redirect_to user_posts_path(current_user), alert: 'You are not authorized to delete this comment.'
     end
   end
-end
 
   private
 
-def comment_params
-  params.require(:comment).permit(:text)
+  def comment_params
+    params.require(:comment).permit(:text)
+  end
 end

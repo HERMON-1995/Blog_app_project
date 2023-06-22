@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = User.find(params[:user_id]).posts.find(params[:id])
+    @post = Post.includes(:author).find(params[:id])
   end
 
   def new
@@ -14,14 +14,24 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    puts params[:id]
+    @post = Post.find(params[:id])
+
+    if can? :destroy, Post
+      @post.destroy
+      redirect_to "/users/#{current_user.id}/posts", notice: 'Post was successfully deleted.'
+    else
+      redirect_to user_posts_path(current_user), alert: 'You are not authorized to delete this post.'
+    end
   end
 
   def create
     @user = current_user
-    @post = Post.new(author_id: @user, title: params[:post][:title], text: params[:post][:text])
-    @post.author_id = @user.id
-    @post.save
-    redirect_to user_posts_path(@user)
+    @post = @user.posts.new(title: params[:post][:title], text: params[:post][:text])
+
+    if @post.save
+      redirect_to user_posts_path(@user), notice: 'Post was successfully created.'
+    else
+      render :new
+    end
   end
 end
