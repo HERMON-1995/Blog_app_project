@@ -8,4 +8,9 @@ class Api::V1::PostsController < ApplicationController
               render json: posts
         end
       
+        def comments
+              post = Post.find(params[:post_id])
+              comments = post.comments
+            #   render json: comments
+        end
 end
