@@ -15,7 +15,6 @@ class Api::V1::CommentsController < ApplicationController
 
   def create
     user = User.find(params[:user_id])
-    Post.find(params[:post_id])
     current_post = Post.find(params[:post_id])
     comments = current_post.comments.new(comment_params)
     comments.post_id = current_post.id

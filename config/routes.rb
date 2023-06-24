@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
 
   namespace :api do
     namespace :v1 do
@@ -9,8 +10,6 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  devise_for :users
 
   # get 'comments/index'
   # get 'likes/index'
