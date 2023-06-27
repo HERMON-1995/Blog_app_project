@@ -36,4 +36,8 @@ class PostsController < ApplicationController
       render :new
     end
   end
+
+  def post_params
+    params.require(:post).permit(:title, :text)
+  end
 end

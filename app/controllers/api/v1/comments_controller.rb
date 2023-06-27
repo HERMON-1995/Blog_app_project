@@ -27,6 +27,22 @@ class Api::V1::CommentsController < ApplicationController
     end
   end
 
+  def update
+    comments = Comment.find(params[:id])
+    if comments.update(comment_params)
+      render json: { status: 'Success', message: 'Comment Updated', data: comments }, status: :ok
+    else
+      render json: { status: 'Not Found', message: 'Details not found', data: comments.errors },
+             status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    comments = Comment.find(params[:id])
+    comments.destroy
+    render json: { status: 'Success', message: 'Comment Deleted', data: comments }, status: :ok
+  end
+
   private
 
   def comment_params
