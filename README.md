@@ -96,8 +96,22 @@ Install this project with:
 To run the project, execute the following command:
 
 ```sh
+  rails db:create
+```
+```sh
+  rails db:migrate
+```
+```sh
+  rake db:migrate
+```
+```sh
+  rake rswag:specs:swaggerize
+```
+```sh
   rails server
 ```
+
+Go to http://localhost:3000/api-docs to view swagger-ui
 
 ### Run tests
 
